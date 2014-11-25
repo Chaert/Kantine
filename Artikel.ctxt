@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.params=artikelNaam\ artikelPrijs
+comment0.target=Artikel(java.lang.String,\ double)
+comment1.params=artikelNaam
+comment1.target=void\ setNaam(java.lang.String)
+comment1.text=\r\n\ Set\ de\ artikel\ naam.\r\n
+comment2.params=artikelPrijs
+comment2.target=void\ setPrijs(double)
+comment2.text=\r\n\ Set\ de\ artikel\ prijs.\r\n
+comment3.params=
+comment3.target=java.lang.String\ getNaam()
+comment3.text=\r\n\ Get\ de\ artikel\ naam.\r\n
+comment4.params=
+comment4.target=double\ getPrijs()
+comment4.text=\r\n\ Get\ de\ artikel\ prijs.\r\n
+comment5.params=
+comment5.target=void\ drukAf()
+comment5.text=\r\n\ Print\ de\ instantievariabelen\ van\ de\ klasse\ 'Artikel'\r\n
+numComments=6

@@ -1,0 +1,10 @@
+Opgave 1B:
+Het aanmaken van een variabele heet declareren. Het vertelt het programma dat we een variabele gaan
+gebruiken met een bepaalde naam en een bepaald type.
+
+Bij initialiseren kennen we voor de eerste keer een waarde aan de gedeclareerde variabele toe.
+
+
+Opgave 4:
+Bij primitieve typen worden de waarden daadwerkelijk gewijzigd, dus via directe opslag.
+Bij objecten refereert de variabele naar een andere variabele, dus via referentie.
