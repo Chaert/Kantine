@@ -11,12 +11,6 @@ public class Persoon
     public int geboortedatumJaar;
     public char geslacht;
     
-    public int BSNTemp;
-    public String voornaamTemp;
-    public String achternaamTemp;
-    public String geboortedatumTemp;
-    public String geslachtTemp;
-    
     public Persoon(int persoonBSN, String persoonVoornaam, String persoonAchternaam, int persoonGeboortedatumDag, int persoonGeboortedatumMaand, int persoonGeboortedatumJaar, char persoonGeslacht){
         setBSN(persoonBSN);
         setVoornaam(persoonVoornaam);
@@ -36,10 +30,18 @@ public class Persoon
     /**
      * Get BSN
      */
-     public int getBSN(){
-            
-         BSNTemp = BSN;
-         return BSNTemp;
+     public String getBSN()
+     {
+         String temp;
+         if(BSN == 0)
+         {
+             temp = "Onbekend";
+         } 
+         else 
+         {
+             temp = "" + BSN + "";
+         }
+         return temp;
     }
     
     /**
@@ -54,9 +56,13 @@ public class Persoon
      * Get voornaam
      */
     public String getVoornaam(){
-        
-        voornaamTemp = voornaam;
-        return voornaamTemp;
+        String temp;
+        if(voornaam == null){
+            temp = "Onbekend";
+        } else {
+            temp = voornaam;
+        }
+        return temp;
     }
     
     /**
@@ -71,9 +77,13 @@ public class Persoon
      * Get achternaam
      */
     public String getAchternaam(){
-        
-        achternaamTemp = achternaam;
-        return achternaamTemp;
+        String temp;
+        if(achternaam == null){
+            temp = "Onbekend";
+        } else {
+            temp = achternaam;
+        }
+        return temp;
     }
     
     /**
@@ -81,6 +91,7 @@ public class Persoon
      */
     public void setGeboortedatum(int persoonGeboortedatumDag, int persoonGeboortedatumMaand, int persoonGeboortedatumJaar)
     {
+        boolean check = false;
         geboortedatumDag = 0;
         geboortedatumMaand = 0;
         geboortedatumJaar = 0;
@@ -96,9 +107,7 @@ public class Persoon
                 case 11:
                     if(persoonGeboortedatumDag <= 30){
                         System.out.println("Uw geboortedatum is aangepast naar " + persoonGeboortedatumDag + "-" + persoonGeboortedatumMaand + "-" + persoonGeboortedatumJaar);
-                        geboortedatumDag = persoonGeboortedatumDag;
-                        geboortedatumMaand = persoonGeboortedatumMaand;
-                        geboortedatumJaar = persoonGeboortedatumJaar;
+                        check = true;
                     } else {
                         System.out.println("De datum " + persoonGeboortedatumDag + "-" + persoonGeboortedatumMaand + "-" + persoonGeboortedatumJaar + " is niet geldig!");
                     }
@@ -113,9 +122,7 @@ public class Persoon
                 case 12:
                     if(persoonGeboortedatumDag <= 31){
                         System.out.println("Uw geboortedatum is aangepast naar " + persoonGeboortedatumDag + "-" + persoonGeboortedatumMaand + "-" + persoonGeboortedatumJaar);
-                        geboortedatumDag = persoonGeboortedatumDag;
-                        geboortedatumMaand = persoonGeboortedatumMaand;
-                        geboortedatumJaar = persoonGeboortedatumJaar;
+                        check = true;
                     } else {
                         System.out.println("De datum " + persoonGeboortedatumDag + "-" + persoonGeboortedatumMaand + "-" + persoonGeboortedatumJaar + " is niet geldig!");
                     }
@@ -125,18 +132,14 @@ public class Persoon
                     if((persoonGeboortedatumJaar % 4 == 0) && (persoonGeboortedatumJaar % 100 != 0) || (persoonGeboortedatumJaar % 400 == 0 )){
                         if(persoonGeboortedatumDag <= 29){
                            System.out.println("Uw geboortedatum is aangepast naar " + persoonGeboortedatumDag + "-" + persoonGeboortedatumMaand + "-" + persoonGeboortedatumJaar);
-                           geboortedatumDag = persoonGeboortedatumDag;
-                           geboortedatumMaand = persoonGeboortedatumMaand;
-                           geboortedatumJaar = persoonGeboortedatumJaar;
+                           check = true;
                         } else {
                            System.out.println("De datum " + persoonGeboortedatumDag + "-" + persoonGeboortedatumMaand + "-" + persoonGeboortedatumJaar + " is niet geldig!"); 
                         }
                     } else {
                         if(persoonGeboortedatumDag <= 28){
                            System.out.println("Uw geboortedatum is aangepast naar " + persoonGeboortedatumDag + "-" + persoonGeboortedatumMaand + "-" + persoonGeboortedatumJaar);
-                           geboortedatumDag = persoonGeboortedatumDag;
-                           geboortedatumMaand = persoonGeboortedatumMaand;
-                           geboortedatumJaar = persoonGeboortedatumJaar;
+                           check = true;
                         } else {
                            System.out.println("De datum " + persoonGeboortedatumDag + "-" + persoonGeboortedatumMaand + "-" + persoonGeboortedatumJaar + " is niet geldig!"); 
                         }
@@ -147,20 +150,26 @@ public class Persoon
         } else {
             System.out.println("De datum " + persoonGeboortedatumDag + "-" + persoonGeboortedatumMaand + "-" + persoonGeboortedatumJaar + " is niet geldig!"); 
         }
+        
+        if(check){
+            geboortedatumDag = persoonGeboortedatumDag;
+            geboortedatumMaand = persoonGeboortedatumMaand;
+            geboortedatumJaar = persoonGeboortedatumJaar;
+        }
     }
     
     /**
      * Get geboortedatum
      */
     public String getGeboortedatum(){
-        
+        String temp;
         if (geboortedatumDag == 0 && geboortedatumMaand == 0 && geboortedatumJaar == 0){
-            geboortedatumTemp = "Onbekend";
+            temp = "Onbekend";
         } else {
-            geboortedatumTemp = geboortedatumDag+"/"+geboortedatumMaand+"/"+geboortedatumJaar;
+            temp = geboortedatumDag+"/"+geboortedatumMaand+"/"+geboortedatumJaar;
         }
         
-        return geboortedatumTemp;
+        return temp;
     }
     
     /**
@@ -181,37 +190,37 @@ public class Persoon
      */
     public String getGeslacht()
     {
-        geslachtTemp = "Onbekend";
-        
+        String temp;
+        temp = "Onbekend";
         if (geslacht == 'm'){
-            geslachtTemp = "Man";
+            temp = "Man";
         } 
         
         if (geslacht == 'v'){
-            geslachtTemp = "Vrouw";
+            temp = "Vrouw";
         }
-        
-        return geslachtTemp;
+        return temp;
     }
+    
     /**
      * Print de instantievariabelen van de klasse 'Persoon'
      */
     public void drukAf()
     {
         getBSN();
-        System.out.println ("Burgerservicenummer: " + BSNTemp);
+        System.out.println ("Burgerservicenummer: " + getBSN());
         
         getVoornaam();
-        System.out.println ("Voornaam: " + voornaamTemp);
+        System.out.println ("Voornaam: " + getVoornaam());
         
         getAchternaam();
-        System.out.println ("Achternaam: " + achternaamTemp);
+        System.out.println ("Achternaam: " + getAchternaam());
         
         getGeboortedatum();
-        System.out.println ("Geboortedatum: "  + geboortedatumTemp);
+        System.out.println ("Geboortedatum: "  + getGeboortedatum());
         
         getGeslacht();
-        System.out.println ("Geslacht: " + geslachtTemp); 
+        System.out.println ("Geslacht: " + getGeslacht()); 
         
     }    
 

@@ -6,9 +6,6 @@ public class Artikel
    public String naam;
    public double prijs;
    
-   public String tempNaam;
-   public double tempPrijs;
-   
    public Artikel(String artikelNaam, double artikelPrijs)
    {
        naam = artikelNaam;
@@ -33,16 +30,14 @@ public class Artikel
     * Get de artikel naam.
     */
    public String getNaam(){
-       tempNaam = naam;
-       return tempNaam;
+       return naam;
    }
    
    /**
     * Get de artikel prijs.
     */
    public double getPrijs(){
-       tempPrijs = prijs;
-       return tempPrijs;
+       return prijs;
    }
    
    /**
@@ -50,10 +45,7 @@ public class Artikel
      */
     public void drukAf()
    {
-        getNaam();
-        System.out.println("Naam: " + tempNaam);
-        
-        getPrijs();
-        System.out.println("Prijs: €" + tempPrijs);
+        System.out.println("Naam: " + naam);
+        System.out.println("Prijs: €" + prijs);
    }    
 }
