@@ -57,6 +57,13 @@ public class Artikel
    }
    
    /**
+    * Get de artikel prijs.
+    */
+   public double getPlainPrijs(){
+       return prijs;
+   }
+   
+   /**
      * Print de instantievariabelen van de klasse 'Artikel'
      */
     public void drukAf()
