@@ -3,7 +3,7 @@
  */
 public class Persoon
 {
-    public int BSN;
+    public int bsn;
     public String voornaam;
     public String achternaam;
     public int geboortedatumDag;
@@ -11,49 +11,53 @@ public class Persoon
     public int geboortedatumJaar;
     public char geslacht;
     
-    public Persoon(int persoonBSN, String persoonVoornaam, String persoonAchternaam, int persoonGeboortedatumDag, int persoonGeboortedatumMaand, int persoonGeboortedatumJaar, char persoonGeslacht){
-        setBSN(persoonBSN);
-        setVoornaam(persoonVoornaam);
-        setAchternaam(persoonAchternaam);
-        setGeboortedatum(persoonGeboortedatumDag, persoonGeboortedatumMaand, persoonGeboortedatumJaar);
-        setGeslacht(persoonGeslacht);
+    public Persoon(){
+        
+    }
+    
+    public Persoon(int bsn, String voornaam, String achternaam, int geboortedatumDag, int geboortedatumMaand, int geboortedatumJaar, char geslacht){
+        setBsn(bsn);
+        setVoornaam(voornaam);
+        setAchternaam(achternaam);
+        setGeboortedatum(geboortedatumDag, geboortedatumMaand, geboortedatumJaar);
+        setGeslacht(geslacht);
     }
     
     /**
-     * Set BSN
+     * Sla de BSN van de gebruiker op
      */
-    public void setBSN(int persoonBSN)
+    public void setBsn(int bsn)
     {
-        BSN = persoonBSN;
+        this.bsn = bsn;
     }
     
     /**
-     * Get BSN
+     * Return de eventueel ingevoerde BSN
      */
-     public String getBSN()
+     public String getBsn()
      {
          String temp;
-         if(BSN == 0)
+         if(bsn == 0)
          {
              temp = "Onbekend";
          } 
          else 
          {
-             temp = "" + BSN + "";
+             temp = "" + bsn + "";
          }
          return temp;
     }
     
     /**
-     * Set voornaam
+     * Sla de voornaam van de gebruiker op
      */
-    public void setVoornaam(String persoonVoornaam)
+    public void setVoornaam(String voornaam)
     {
-        voornaam = persoonVoornaam;
+        this.voornaam = voornaam;
     }
     
     /**
-     * Get voornaam
+     * Return de eventueel ingevoerde voornaam
      */
     public String getVoornaam(){
         String temp;
@@ -66,15 +70,15 @@ public class Persoon
     }
     
     /**
-     * Set achternaam
+     * Sla de achternaam van de gebruiker op
      */
-    public void setAchternaam(String persoonAchternaam)
+    public void setAchternaam(String achternaam)
     {
-        achternaam = persoonAchternaam;
+        this.achternaam = achternaam;
     }
     
     /**
-     * Get achternaam
+     * Return de eventueel ingevoerde achternaam
      */
     public String getAchternaam(){
         String temp;
@@ -87,29 +91,23 @@ public class Persoon
     }
     
     /**
-     * Set geboortedatum
+     * Controleer of de geboortedatum geldig is en sla deze daarna op
      */
-    public void setGeboortedatum(int persoonGeboortedatumDag, int persoonGeboortedatumMaand, int persoonGeboortedatumJaar)
+    public void setGeboortedatum(int geboortedatumDag, int geboortedatumMaand, int geboortedatumJaar)
     {
         boolean check = false;
-        geboortedatumDag = 0;
-        geboortedatumMaand = 0;
-        geboortedatumJaar = 0;
         
-        if((persoonGeboortedatumDag >= 1) && 
-           (persoonGeboortedatumMaand >= 1 && persoonGeboortedatumMaand <= 12) && 
-           (persoonGeboortedatumJaar >= 1900 && persoonGeboortedatumJaar <= 2100))
+        if((geboortedatumDag >= 1) && 
+           (geboortedatumMaand >= 1 && geboortedatumMaand <= 12) && 
+           (geboortedatumJaar >= 1900 && geboortedatumJaar <= 2100))
         {
-            switch (persoonGeboortedatumMaand){
+            switch (geboortedatumMaand){
                 case 4:
                 case 6:
                 case 9:
                 case 11:
-                    if(persoonGeboortedatumDag <= 30){
-                        System.out.println("Uw geboortedatum is aangepast naar " + persoonGeboortedatumDag + "-" + persoonGeboortedatumMaand + "-" + persoonGeboortedatumJaar);
+                    if(geboortedatumDag <= 30){
                         check = true;
-                    } else {
-                        System.out.println("De datum " + persoonGeboortedatumDag + "-" + persoonGeboortedatumMaand + "-" + persoonGeboortedatumJaar + " is niet geldig!");
                     }
                 break;
                 
@@ -120,46 +118,41 @@ public class Persoon
                 case 8:
                 case 10:
                 case 12:
-                    if(persoonGeboortedatumDag <= 31){
-                        System.out.println("Uw geboortedatum is aangepast naar " + persoonGeboortedatumDag + "-" + persoonGeboortedatumMaand + "-" + persoonGeboortedatumJaar);
+                    if(geboortedatumDag <= 31){
                         check = true;
-                    } else {
-                        System.out.println("De datum " + persoonGeboortedatumDag + "-" + persoonGeboortedatumMaand + "-" + persoonGeboortedatumJaar + " is niet geldig!");
                     }
                 break;
                 
                 case 2:
-                    if((persoonGeboortedatumJaar % 4 == 0) && (persoonGeboortedatumJaar % 100 != 0) || (persoonGeboortedatumJaar % 400 == 0 )){
-                        if(persoonGeboortedatumDag <= 29){
-                           System.out.println("Uw geboortedatum is aangepast naar " + persoonGeboortedatumDag + "-" + persoonGeboortedatumMaand + "-" + persoonGeboortedatumJaar);
+                    if((geboortedatumJaar % 4 == 0) && (geboortedatumJaar % 100 != 0) || (geboortedatumJaar % 400 == 0 )){
+                        if(geboortedatumDag <= 29){
                            check = true;
-                        } else {
-                           System.out.println("De datum " + persoonGeboortedatumDag + "-" + persoonGeboortedatumMaand + "-" + persoonGeboortedatumJaar + " is niet geldig!"); 
                         }
                     } else {
-                        if(persoonGeboortedatumDag <= 28){
-                           System.out.println("Uw geboortedatum is aangepast naar " + persoonGeboortedatumDag + "-" + persoonGeboortedatumMaand + "-" + persoonGeboortedatumJaar);
+                        if(geboortedatumDag <= 28){
                            check = true;
-                        } else {
-                           System.out.println("De datum " + persoonGeboortedatumDag + "-" + persoonGeboortedatumMaand + "-" + persoonGeboortedatumJaar + " is niet geldig!"); 
                         }
                     }
                 break;
             }
         
-        } else {
-            System.out.println("De datum " + persoonGeboortedatumDag + "-" + persoonGeboortedatumMaand + "-" + persoonGeboortedatumJaar + " is niet geldig!"); 
         }
         
         if(check){
-            geboortedatumDag = persoonGeboortedatumDag;
-            geboortedatumMaand = persoonGeboortedatumMaand;
-            geboortedatumJaar = persoonGeboortedatumJaar;
+            this.geboortedatumDag = geboortedatumDag;
+            this.geboortedatumMaand = geboortedatumMaand;
+            this.geboortedatumJaar = geboortedatumJaar;
+            System.out.println("Uw geboortedatum is aangepast naar " + this.geboortedatumDag + "-" + this.geboortedatumMaand + "-" + this.geboortedatumJaar);
+        } else {
+            geboortedatumDag = 0;
+            geboortedatumMaand = 0;
+            geboortedatumJaar = 0;
+            System.out.println("De datum " + geboortedatumDag + "-" + geboortedatumMaand + "-" + geboortedatumJaar + " is niet geldig!");
         }
     }
     
     /**
-     * Get geboortedatum
+     * Return de eventueel ingevoerde geboortedatum
      */
     public String getGeboortedatum(){
         String temp;
@@ -173,20 +166,20 @@ public class Persoon
     }
     
     /**
-     * Set geslacht
+     * Sla het geslacht van de gebruiker op
      */
-    public void setGeslacht(char persoonGeslacht)
+    public void setGeslacht(char geslacht)
     {
-        if (persoonGeslacht == 'm' || persoonGeslacht == 'v'){
-            geslacht = persoonGeslacht;
+        if (geslacht == 'm' || geslacht == 'M' || geslacht == 'V' || geslacht == 'v'){
+            this.geslacht = geslacht;
         } else {
             System.out.println ("U zult M of V in moeten vullen!");
-            geslacht = '0';
+            this.geslacht = '0';
         }   
     }
     
     /**
-     * Get geslacht
+     * Return de eventueel ingevoerde geboortedatum
      */
     public String getGeslacht()
     {
@@ -203,23 +196,14 @@ public class Persoon
     }
     
     /**
-     * Print de instantievariabelen van de klasse 'Persoon'
+     * Print alle instantievariabelen van de klasse 'Persoon'
      */
     public void drukAf()
     {
-        getBSN();
-        System.out.println ("Burgerservicenummer: " + getBSN());
-        
-        getVoornaam();
+        System.out.println ("Burgerservicenummer: " + getBsn());
         System.out.println ("Voornaam: " + getVoornaam());
-        
-        getAchternaam();
         System.out.println ("Achternaam: " + getAchternaam());
-        
-        getGeboortedatum();
         System.out.println ("Geboortedatum: "  + getGeboortedatum());
-        
-        getGeslacht();
         System.out.println ("Geslacht: " + getGeslacht()); 
         
     }    

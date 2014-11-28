@@ -6,38 +6,54 @@ public class Artikel
    public String naam;
    public double prijs;
    
+   public Artikel(){
+   
+   }
+   
    public Artikel(String artikelNaam, double artikelPrijs)
    {
-       naam = artikelNaam;
-       prijs = artikelPrijs;
+       setNaam(artikelNaam);
+       setPrijs(artikelPrijs);
    }
    
    /**
     * Set de artikel naam.
     */
-   public void setNaam(String artikelNaam){
-       naam = artikelNaam;
+   public void setNaam(String naam){
+       this.naam = naam;
    }
    
    /**
     * Set de artikel prijs.
     */
-   public void setPrijs(double artikelPrijs){
-       prijs = artikelPrijs;
+   public void setPrijs(double prijs){
+       this.prijs = prijs;
    }
    
    /**
     * Get de artikel naam.
     */
    public String getNaam(){
-       return naam;
+       String temp;
+       if(naam == null){
+           temp = "Onbekend";
+       } else {
+           temp = naam;
+       }
+       return temp;
    }
    
    /**
     * Get de artikel prijs.
     */
-   public double getPrijs(){
-       return prijs;
+   public String getPrijs(){
+       String temp;
+       if(prijs == 0.0){
+           temp = "Onbekend";
+       } else {
+           temp = "€" + prijs;
+       }
+       return temp;
    }
    
    /**
@@ -45,7 +61,7 @@ public class Artikel
      */
     public void drukAf()
    {
-        System.out.println("Naam: " + naam);
-        System.out.println("Prijs: €" + prijs);
+        System.out.println("Naam: " + getNaam());
+        System.out.println("Prijs: " + getPrijs());
    }    
 }
