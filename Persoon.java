@@ -143,7 +143,7 @@ public class Persoon
             this.geboortedatumDag = geboortedatumDag;
             this.geboortedatumMaand = geboortedatumMaand;
             this.geboortedatumJaar = geboortedatumJaar;
-            System.out.println("Uw geboortedatum is aangepast naar " + this.geboortedatumDag + "-" + this.geboortedatumMaand + "-" + this.geboortedatumJaar);
+            //System.out.println("Uw geboortedatum is aangepast naar " + this.geboortedatumDag + "-" + this.geboortedatumMaand + "-" + this.geboortedatumJaar);
         } else {
             geboortedatumDag = 0;
             geboortedatumMaand = 0;
