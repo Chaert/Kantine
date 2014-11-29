@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Kantine {
   private Kassa kassa;
   private KassaRij kassarij;
@@ -37,26 +39,28 @@ public class Kantine {
    * Deze methode handelt de rij voor de kassa af.
    */
   public void verwerkRijVoorKassa() {
-    //while() {
-      //omitted   
-    //}
+     int rijGrootte = kassarij.rijGrootte();
+     while(rijGrootte > 0){
+        kassa.rekenAf(kassarij.eerstePersoonInRij());
+        rijGrootte--;
+    }
   }
 
   /**
    * Deze methode telt het geld uit de kassa
    * @return hoeveelheid geld in kassa
    */
-  //public double hoeveelheidGeldInKassa() {
-    //omitted
-  //}
+  public double hoeveelheidGeldInKassa() {
+    return kassa.hoeveelheidGeldInKassa();
+  }
 
   /**
    * Deze methode geeft het aantal gepasseerde artikelen.
    * @return het aantal gepasseerde artikelen
    */
-  //public int aantalArtikelen(){
-    //omitted
-  //}
+  public int aantalArtikelen(){
+    return kassa.aantalArtikelen();
+  }
 
   /**
    * Deze methode reset de bijgehouden telling van 
@@ -64,6 +68,6 @@ public class Kantine {
    * en "leegt" de inhoud van de kassa.
    */
   public void resetKassa() {
-    // omitted
+    kassa.resetKassa();
   }
 }

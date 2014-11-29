@@ -18,8 +18,6 @@ public class Kassa {
    * @param persoon die moet afrekenen
    */
   public void rekenAf(Persoon persoon) {
-     System.out.println("Hier komt de info");
-     persoon = persoon;
      int aantal = persoon.getAantalArtikelen();
      double bedrag = persoon.getTotaalPrijs();
      aantalGepasseerdeArtikelen += aantal;

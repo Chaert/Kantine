@@ -35,6 +35,13 @@ public class KassaRij {
         }
       return persoon;
   }
+  
+  /**
+   * Rijgrootte bepalen
+   */
+  public int rijGrootte(){
+      return rij.size();
+  }
 
   /**
    * Methode kijkt of er personen in de rij staan. 
