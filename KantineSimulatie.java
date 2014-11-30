@@ -13,7 +13,7 @@ public class KantineSimulatie {
    * verloop van de kantine
    * @param dagen
    */
-  public void simuleer(int dagen) {
+  public void simuleer(int dagen, Persoon persoon1, Artikel artikel1, Artikel artikel2) {
     // for lus voor dagen
     for(int k = 1; k <= dagen; k++) {
       // per dag nu even vast 10+i personen naar binnen
@@ -21,9 +21,6 @@ public class KantineSimulatie {
       // for lus voor personen
       int i = 7;
       for(int j = 0; j < 10 + i; j++){
-        Persoon persoon1 = new Persoon(23423, "Daniel", "Boonstra", 25, 9, 1997, 'm');
-        Artikel artikel1 = new Artikel("Cola", 1.95);
-        Artikel artikel2 = new Artikel("Broodje Kaas", 0.95);
         kantine.loopPakSluitAan(persoon1, artikel1, artikel2);
       }
       
