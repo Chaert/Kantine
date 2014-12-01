@@ -4,6 +4,7 @@ public class Kassa {
     public KassaRij kassarij;
     public int aantalGepasseerdeArtikelen;
     public double hoeveelheidGeld;
+    
     /**
      * Constructor
      */

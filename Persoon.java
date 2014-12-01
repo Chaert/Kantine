@@ -1,5 +1,5 @@
 /**
- * @Daniel Boonstra & Tjeerd Feddema
+ * Daniel Boonstra & Tjeerd Feddema
  */
 public class Persoon
 {
@@ -11,11 +11,18 @@ public class Persoon
     public int geboortedatumJaar;
     public char geslacht;
     public Dienblad dienblad;
-    
+
+    /**
+     * Lege constructor
+     */
     public Persoon(){
-        
+
     }
-    
+
+    /**
+     * Constructor met ingevulde waarden
+     * @param BSN, voornaam, achternaam, geboortedatum, geslacht van de aan te maken persoon
+     */
     public Persoon(int bsn, String voornaam, String achternaam, int geboortedatumDag, int geboortedatumMaand, int geboortedatumJaar, char geslacht){
         setBsn(bsn);
         setVoornaam(voornaam);
@@ -23,42 +30,43 @@ public class Persoon
         setGeboortedatum(geboortedatumDag, geboortedatumMaand, geboortedatumJaar);
         setGeslacht(geslacht);
     }
-    
+
     /**
      * Sla de BSN van de gebruiker op
+     * @param BSN
      */
     public void setBsn(int bsn)
     {
         this.bsn = bsn;
     }
-    
+
     /**
      * Return de eventueel ingevoerde BSN
+     * @return BSN
      */
-     public String getBsn()
-     {
-         String temp;
-         if(bsn == 0)
-         {
-             temp = "Onbekend";
-         } 
-         else 
-         {
-             temp = "" + bsn + "";
-         }
-         return temp;
+    public String getBsn()
+    {
+        String temp;
+        if(bsn == 0){
+            temp = "Onbekend";
+        }else{
+            temp = "" + bsn + "";
+        }
+        return temp;
     }
-    
+
     /**
      * Sla de voornaam van de gebruiker op
+     * @param voornaam
      */
     public void setVoornaam(String voornaam)
     {
         this.voornaam = voornaam;
     }
-    
+
     /**
      * Return de eventueel ingevoerde voornaam
+     * @return voornaam
      */
     public String getVoornaam(){
         String temp;
@@ -69,17 +77,19 @@ public class Persoon
         }
         return temp;
     }
-    
+
     /**
      * Sla de achternaam van de gebruiker op
+     * @param achternaam
      */
     public void setAchternaam(String achternaam)
     {
         this.achternaam = achternaam;
     }
-    
+
     /**
      * Return de eventueel ingevoerde achternaam
+     * @return achternaam
      */
     public String getAchternaam(){
         String temp;
@@ -90,28 +100,29 @@ public class Persoon
         }
         return temp;
     }
-    
+
     /**
      * Controleer of de geboortedatum geldig is en sla deze daarna op
+     * @param geboortedatumdag, maand en jaar
      */
     public void setGeboortedatum(int geboortedatumDag, int geboortedatumMaand, int geboortedatumJaar)
     {
         boolean check = false;
-        
+
         if((geboortedatumDag >= 1) && 
-           (geboortedatumMaand >= 1 && geboortedatumMaand <= 12) && 
-           (geboortedatumJaar >= 1900 && geboortedatumJaar <= 2100))
+        (geboortedatumMaand >= 1 && geboortedatumMaand <= 12) && 
+        (geboortedatumJaar >= 1900 && geboortedatumJaar <= 2100))
         {
             switch (geboortedatumMaand){
                 case 4:
                 case 6:
                 case 9:
                 case 11:
-                    if(geboortedatumDag <= 30){
-                        check = true;
-                    }
+                if(geboortedatumDag <= 30){
+                    check = true;
+                }
                 break;
-                
+
                 case 1:
                 case 3:
                 case 5:
@@ -119,26 +130,26 @@ public class Persoon
                 case 8:
                 case 10:
                 case 12:
-                    if(geboortedatumDag <= 31){
+                if(geboortedatumDag <= 31){
+                    check = true;
+                }
+                break;
+
+                case 2:
+                if((geboortedatumJaar % 4 == 0) && (geboortedatumJaar % 100 != 0) || (geboortedatumJaar % 400 == 0 )){
+                    if(geboortedatumDag <= 29){
                         check = true;
                     }
-                break;
-                
-                case 2:
-                    if((geboortedatumJaar % 4 == 0) && (geboortedatumJaar % 100 != 0) || (geboortedatumJaar % 400 == 0 )){
-                        if(geboortedatumDag <= 29){
-                           check = true;
-                        }
-                    } else {
-                        if(geboortedatumDag <= 28){
-                           check = true;
-                        }
+                } else {
+                    if(geboortedatumDag <= 28){
+                        check = true;
                     }
+                }
                 break;
             }
-        
+
         }
-        
+
         if(check){
             this.geboortedatumDag = geboortedatumDag;
             this.geboortedatumMaand = geboortedatumMaand;
@@ -151,9 +162,10 @@ public class Persoon
             System.out.println("De datum " + geboortedatumDag + "-" + geboortedatumMaand + "-" + geboortedatumJaar + " is niet geldig!");
         }
     }
-    
+
     /**
      * Return de eventueel ingevoerde geboortedatum
+     * @return geboortedatum
      */
     public String getGeboortedatum(){
         String temp;
@@ -162,12 +174,13 @@ public class Persoon
         } else {
             temp = geboortedatumDag+"/"+geboortedatumMaand+"/"+geboortedatumJaar;
         }
-        
+
         return temp;
     }
-    
+
     /**
      * Sla het geslacht van de gebruiker op
+     * @param geslacht
      */
     public void setGeslacht(char geslacht)
     {
@@ -178,9 +191,10 @@ public class Persoon
             this.geslacht = '0';
         }   
     }
-    
+
     /**
-     * Return de eventueel ingevoerde geboortedatum
+     * Return het eventueel ingevoerde geslacht
+     * @return geslacht
      */
     public String getGeslacht()
     {
@@ -189,13 +203,13 @@ public class Persoon
         if (geslacht == 'm'){
             temp = "Man";
         } 
-        
+
         if (geslacht == 'v'){
             temp = "Vrouw";
         }
         return temp;
     }
-    
+
     /**
      * Print alle instantievariabelen van de klasse 'Persoon'
      */
@@ -206,9 +220,9 @@ public class Persoon
         System.out.println ("Achternaam: " + getAchternaam());
         System.out.println ("Geboortedatum: "  + getGeboortedatum());
         System.out.println ("Geslacht: " + getGeslacht()); 
-        
+
     }    
-    
+
     /**
      * Methode om dienblad te koppelen aan een persoon
      * @param dienblad
@@ -216,38 +230,36 @@ public class Persoon
     public void pakDienblad(Dienblad dienblad) {
         this.dienblad = dienblad;
     }
-    
+
     /**
- * Methode om artikel te pakken en te plaatsen op het dienblad
- * @param artikel
- */
-public void pakArtikel(Artikel artikel) {
-    dienblad.voegToe(artikel);
-}
-
-/**
- * Methode om de totaalprijs van de artikelen
- * op dienblad dat bij de persoon hoort uit te rekenen
- * @return De totaalprijs
- */
-public double getTotaalPrijs() {
-    if(dienblad != null){
-        return dienblad.getTotaalPrijs();
-    } else {
-        System.out.println("U heeft nog geen dienblad.");
-        return dienblad.getTotaalPrijs();
+     * Methode om artikel te pakken en te plaatsen op het dienblad
+     * @param artikel
+     */
+    public void pakArtikel(Artikel artikel) {
+        dienblad.voegToe(artikel);
     }
-}
 
-/**
- * Methode om het aantal artikelen op dienblad dat bij de
- * persoon hoort te tellen
- * @return Het aantal artikelen
- */
-public int getAantalArtikelen() {
-    return dienblad.getAantalArtikelen();
-}
+    /**
+     * Methode om de totaalprijs van de artikelen
+     * op dienblad dat bij de persoon hoort uit te rekenen
+     * @return De totaalprijs
+     */
+    public double getTotaalPrijs() {
+        if(dienblad != null){
+            return dienblad.getTotaalPrijs();
+        } else {
+            System.out.println("U heeft nog geen dienblad.");
+            return dienblad.getTotaalPrijs();
+        }
+    }
 
-
+    /**
+     * Methode om het aantal artikelen op dienblad dat bij de
+     * persoon hoort te tellen
+     * @return Het aantal artikelen
+     */
+    public int getAantalArtikelen() {
+        return dienblad.getAantalArtikelen();
+    }
 
 }
