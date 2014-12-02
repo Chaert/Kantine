@@ -1,13 +1,13 @@
-import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class KassaRij {
-    public ArrayList<Persoon> rij;
+    public LinkedList<Persoon> rij;
     
     /**
      * Constructor
      */
     public KassaRij() {
-        rij = new ArrayList<Persoon>(); 
+        rij = new LinkedList<Persoon>(); 
     }
 
     /**

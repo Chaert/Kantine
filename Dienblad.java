@@ -1,13 +1,13 @@
-import java.util.ArrayList;
+import java.util.Stack;
 
 public class Dienblad {
-    public ArrayList<Artikel> artikelen;
+    public Stack<Artikel> artikelen;
 
     /**
      * Constructor
      */
     public Dienblad() {
-        artikelen = new ArrayList<Artikel>(); 
+        artikelen = new Stack<Artikel>(); 
     }
  
     /**
