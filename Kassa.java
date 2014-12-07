@@ -17,10 +17,43 @@ public class Kassa {
      * @param persoon die moet afrekenen
      */
     public void rekenAf(Persoon persoon) {
-        int aantal = persoon.getAantalArtikelen();
-        double bedrag = persoon.getTotaalPrijs();
+        Dienblad dienblad = persoon.getDienblad();
+        int aantal = getAantalDienbladArtikelen(dienblad);
+        double bedrag = getDienbladTotaalPrijs(dienblad);
         aantalGepasseerdeArtikelen += aantal;
         hoeveelheidGeld += bedrag;
+    }
+    
+    /**
+     * Methode om de totaalprijs van de artikelen
+     * op dienblad dat bij de persoon hoort uit te rekenen
+     * @return De totaalprijs
+     */
+    public double getDienbladTotaalPrijs(Dienblad dienblad) {
+        if(dienblad != null){
+            
+            double totaalPrijs = 0.0;
+            for(int i = 0; i < dienblad.artikelen.size(); i++){
+                Artikel product = dienblad.artikelen.get(i);
+                totaalPrijs += product.getPlainPrijs();
+            }
+        
+            return totaalPrijs;
+            
+        } else {
+            System.out.println("U heeft nog geen dienblad.");
+            double totaalPrijs = 0.0;
+            return totaalPrijs;
+        }
+    }
+    
+    /**
+     * Methode om het aantal artikelen op dienblad dat bij de
+     * persoon hoort te tellen
+     * @return Het aantal artikelen
+     */
+    public int getAantalDienbladArtikelen(Dienblad dienblad) {
+        return dienblad.artikelen.size();
     }
 
     /**

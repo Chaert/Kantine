@@ -230,36 +230,9 @@ public class Persoon
     public void pakDienblad(Dienblad dienblad) {
         this.dienblad = dienblad;
     }
-
-    /**
-     * Methode om artikel te pakken en te plaatsen op het dienblad
-     * @param artikel
-     */
-    public void pakArtikel(Artikel artikel) {
-        dienblad.voegToe(artikel);
-    }
-
-    /**
-     * Methode om de totaalprijs van de artikelen
-     * op dienblad dat bij de persoon hoort uit te rekenen
-     * @return De totaalprijs
-     */
-    public double getTotaalPrijs() {
-        if(dienblad != null){
-            return dienblad.getTotaalPrijs();
-        } else {
-            System.out.println("U heeft nog geen dienblad.");
-            return dienblad.getTotaalPrijs();
-        }
-    }
-
-    /**
-     * Methode om het aantal artikelen op dienblad dat bij de
-     * persoon hoort te tellen
-     * @return Het aantal artikelen
-     */
-    public int getAantalArtikelen() {
-        return dienblad.getAantalArtikelen();
+    
+    public Dienblad getDienblad(){
+        return dienblad;
     }
 
 }

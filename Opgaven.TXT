@@ -1,10 +1,9 @@
-Opgave 1B:
-Het aanmaken van een variabele heet declareren. Het vertelt het programma dat we een variabele gaan
-gebruiken met een bepaalde naam en een bepaald type.
+Week 3:
+	2a: In een HashMap heb je key's en value's. In HashSet heb je alleen value's.
 
-Bij initialiseren kennen we voor de eerste keer een waarde aan de gedeclareerde variabele toe.
-
-
-Opgave 4:
-Bij primitieve typen worden de waarden daadwerkelijk gewijzigd, dus via directe opslag.
-Bij objecten refereert de variabele naar een andere variabele, dus via referentie.
+	3a: De constructor maakt het kantine aanbod aan.
+	3b: Aangezien er +min achter staat, wordt de waarde opgehoogd met het minimum. Normaal is de minimum waarde 0. Dus nu is de minimum
+	    waarde 0 + min = min.
+            Het maximum komt tussen haakjes te staan. Maar omdat er later nog weer de minimum waarde bij opgeteld wordt, moet de minimum
+	    waarde hier weer van het maximum afgehaald worden.
+            Normaal zou nextInt TOT de ingevoerde value gaan. Maar in dit geval gaat hij tot en met de ingevoerde value gaan. Door de +1.
