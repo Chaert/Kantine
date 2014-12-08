@@ -1,4 +1,5 @@
 import java.util.*;
+import java.text.*;
 
 public class KantineSimulatie {
     // kantine
@@ -10,6 +11,9 @@ public class KantineSimulatie {
     // random generator
     private Random random;
 
+    // afronden
+    private NumberFormat round = new DecimalFormat("#.00");
+    
     // aantal artikelen
     private static final int AANTAL_ARTIKELEN=4;
 
@@ -123,8 +127,9 @@ public class KantineSimulatie {
             double dagTotaal = kantine.getKassa().hoeveelheidGeldInKassa();
             int aantalArtikelen = kantine.getKassa().aantalArtikelen();
             int dag = i+1;
-            System.out.println("Dag " + dag + ": Er zit " + dagTotaal + " euro in de kassa. Totaal zijn er " + aantalArtikelen + " artikelen verkocht. Er zijn vandaag " + aantalpersonen + " klanten geweest.");
+            System.out.println("Dag " + dag + ": Er zit " + round.format(dagTotaal) + " euro in de kassa. Totaal zijn er " + aantalArtikelen + " artikelen verkocht. Er zijn vandaag " + aantalpersonen + " klanten geweest.");
             kantine.getKassa().resetKassa();
         }
     }
+    
 }

@@ -3,7 +3,12 @@ import java.util.*;
 public class KantineAanbod {
     // interne opslag voorraad
     private HashMap<String, ArrayList<Artikel>> aanbod;
-   
+    private double[] prijs;
+    private int[] hoeveelheid;
+    private String[] artikelnaam;
+    
+    // minimum voorraad
+    private static final int MINIMUM_VOORRAAD = 5000;
     
     /**
      * Constructor. Het eerste argument is een lijst met artikelnamen,
@@ -12,6 +17,10 @@ public class KantineAanbod {
      * moeten wel gelijk zijn!
      */
     public KantineAanbod(String[] artikelnaam, double[] prijs, int[] hoeveelheid) {
+        this.artikelnaam = artikelnaam;
+        this.hoeveelheid = hoeveelheid;
+        this.prijs = prijs;
+        
         aanbod=new HashMap<String, ArrayList<Artikel>>();
         for(int i=0;i<artikelnaam.length;i++) 
         {
@@ -32,6 +41,15 @@ public class KantineAanbod {
          return aanbod.get(productnaam); 
     }
 
+    private void checkVoorraad(){
+        for (int index = 0; index < artikelnaam.length; index++){
+            ArrayList<Artikel> artikelen = aanbod.get(artikelnaam[index]);
+            if(artikelen.size() < MINIMUM_VOORRAAD){
+                vulVoorraadAan(index);
+            }
+        }
+    }
+    
     /**
      * Private methode om een Artikel van de stapel artikelen af te pakken. 
      * Retourneert null als de stapel leeg is.
@@ -48,9 +66,18 @@ public class KantineAanbod {
         else 
         {
             Artikel a=stapel.get(0);
+            checkVoorraad();
             stapel.remove(0);
             return a;
         }
+    }
+    
+    private void vulVoorraadAan(int index){
+        ArrayList<Artikel> artikelen = aanbod.get(artikelnaam[index]);
+        while(artikelen.size() < hoeveelheid[index]){
+            artikelen.add(new Artikel(artikelnaam[index], prijs[index]));
+        }
+        
     }
 
     /**
