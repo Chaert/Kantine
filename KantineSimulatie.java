@@ -19,7 +19,7 @@ public class KantineSimulatie {
 
     // artikelen
     private static final String[] artikelnamen=
-        new String[] {"Koffie","Broodje hamburger", "Broodje kaas", "Melk"};
+        new String[] {"Koffie", "Broodje hamburger", "Broodje kaas", "Melk"};
 
     // prijzen
     private static double[] artikelprijzen=
