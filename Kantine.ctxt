@@ -2,8 +2,8 @@
 comment0.params=
 comment0.target=Kantine()
 comment0.text=\r\n\ Constructor\r\n
-comment1.params=artikelnamen
-comment1.target=void\ loopPakSluitAan(java.lang.String[])
+comment1.params=persoon\ artikelnamen
+comment1.target=void\ loopPakSluitAan(Persoon,\ java.lang.String[])
 comment1.text=\r\n\ In\ deze\ methode\ wordt\ een\ Persoon\ en\ Dienblad\r\n\ gemaakt\ en\ aan\ elkaar\r\n\ gekoppeld.\ Maak\ twee\ Artikelen\ aan\ en\ plaats\ \r\n\ deze\ op\ het\ dienblad.\ \ \ \r\n\ Tenslotte\ sluit\ de\ Persoon\ zich\ aan\ bij\ de\ rij\ \r\n\ voor\ de\ kassa.\r\n
 comment2.params=
 comment2.target=void\ verwerkRijVoorKassa()

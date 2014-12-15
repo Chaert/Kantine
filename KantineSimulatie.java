@@ -13,7 +13,7 @@ public class KantineSimulatie {
 
     // afronden
     private NumberFormat round = new DecimalFormat("#.00");
-    
+
     // aantal artikelen
     private static final int AANTAL_ARTIKELEN=4;
 
@@ -88,20 +88,25 @@ public class KantineSimulatie {
         }
         return artikelen;
     }
-   
+
     /**
      * Deze methode simuleert een aantal dagen in het 
      * verloop van de kantine
      * @param dagen
      */
     public void simuleer(int dagen) {
+        int[] aantalArray = new int[dagen];
+        double[] omzetArray = new double[dagen];
         // for lus voor dagen
         for(int i=0;i<dagen;i++) {
             // bedenk hoeveel personen vandaag binnen lopen
-            int aantalpersonen = getRandomValue(7, 65);
+            int aantalPersonen = getRandomValue(70, 210);
+            int aantalDocenten = (aantalPersonen * 10) / 100;
+            int aantalStudenten = (aantalPersonen * 89) / 100;
+            int aantalKantineMedewerkers = (aantalPersonen * 1) / 100;;
 
             // laat de personen maar komen...
-            for(int j=0;j<aantalpersonen;j++) {
+            for(int l=1; l<=aantalStudenten; l++){
                 // bedenk hoeveel artikelen worden gepakt
                 int aantalartikelen = getRandomValue(1, 4);
 
@@ -115,9 +120,51 @@ public class KantineSimulatie {
 
                 // loop de kantine binnen, pak de gewenste 
                 // artikelen, sluit aan
-                
-                kantine.loopPakSluitAan(artikelen);
+
+                Persoon student = new Student(l, "Informatica", 328109, "Daniel", "Boonstra", 25, 9, 1997, 'm');
+                kantine.loopPakSluitAan(student, artikelen);
+                //student.drukAf();
             }
+            
+            for(int l=1; l<=aantalKantineMedewerkers; l++){
+                // bedenk hoeveel artikelen worden gepakt
+                int aantalartikelen = getRandomValue(1, 4);
+
+                // genereer de “artikelnummers”, dit zijn indexen 
+                // van de artikelnamen array  
+                int[] tepakken=getRandomArray(aantalartikelen, 0, AANTAL_ARTIKELEN-1);
+
+                // vind de artikelnamen op basis van 
+                // de indexen hierboven
+                String[] artikelen=geefArtikelNamen(tepakken);
+
+                // loop de kantine binnen, pak de gewenste 
+                // artikelen, sluit aan
+
+                Persoon kantineMedewerker = new KantineMedewerker(l, true, 328109, "Daniel", "Boonstra", 25, 9, 1997, 'm');
+                kantine.loopPakSluitAan(kantineMedewerker, artikelen);
+                //kantineMedewerker.drukAf();
+            }
+
+            for(int l=1; l<=aantalDocenten; l++){
+                // bedenk hoeveel artikelen worden gepakt
+                int aantalartikelen = getRandomValue(1, 4);
+
+                // genereer de “artikelnummers”, dit zijn indexen 
+                // van de artikelnamen array  
+                int[] tepakken=getRandomArray(aantalartikelen, 0, AANTAL_ARTIKELEN-1);
+
+                // vind de artikelnamen op basis van 
+                // de indexen hierboven
+                String[] artikelen=geefArtikelNamen(tepakken);
+
+                // loop de kantine binnen, pak de gewenste 
+                // artikelen, sluit aan
+                Persoon docent = new Docent("TEST", "Instituut voor ICT", 328109, "Daniel", "Boonstra", 25, 9, 1997, 'm');
+                kantine.loopPakSluitAan(docent, artikelen);
+                //docent.drukAf();
+            }
+
 
             // verwerk rij voor de kassa
             // druk de dagtotalen af en hoeveel personen binnen 
@@ -127,9 +174,23 @@ public class KantineSimulatie {
             double dagTotaal = kantine.getKassa().hoeveelheidGeldInKassa();
             int aantalArtikelen = kantine.getKassa().aantalArtikelen();
             int dag = i+1;
-            System.out.println("Dag " + dag + ": Er zit " + round.format(dagTotaal) + " euro in de kassa. Totaal zijn er " + aantalArtikelen + " artikelen verkocht. Er zijn vandaag " + aantalpersonen + " klanten geweest.");
+
+            System.out.println("Dag " + dag + ": Er zit " + round.format(dagTotaal) + " euro in de kassa. Totaal zijn er " + aantalArtikelen + " artikelen verkocht. Er zijn vandaag " + aantalPersonen + " klanten geweest.");
+            System.out.println("     " + aantalStudenten + " studenten, " + aantalDocenten + " docenten en " + aantalKantineMedewerkers + " kantine medewerker(s).");
+            omzetArray[i] = dagTotaal;
+            aantalArray[i] = aantalArtikelen;
             kantine.getKassa().resetKassa();
         }
+        double[] dagOmzet = Administratie.berekenDagOmzet(omzetArray);
+        
+        System.out.println("---------------------------------");
+        for(int i = 0; i < dagOmzet.length; i++){
+            System.out.println("Dag " + (i+1) + " van de week: " + round.format(dagOmzet[i]));
+        }
+        System.out.println("Gemiddelde omzet: " + round.format(Administratie.berekenGemiddeldeOmzet(omzetArray)));
+        System.out.println("Gemiddeld aantal artikelen: " + round.format(Administratie.berekenGemiddeldAantal(aantalArray)));
+        System.out.println("---------------------------------");
+        
     }
-    
 }
+

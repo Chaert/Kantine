@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.params=studentNummer\ studieRichting\ bsn\ voornaam\ achternaam\ geboortedatumDag\ geboortedatumMaand\ geboortedatumJaar\ geslacht
+comment0.target=Student(int,\ java.lang.String,\ int,\ java.lang.String,\ java.lang.String,\ int,\ int,\ int,\ char)
+comment1.params=studentNummer
+comment1.target=void\ setStudentNummer(int)
+comment1.text=\r\n\ Set\ de\ ingevoerde\ studentnummer\r\n\ @param\ studentnummer\r\n
+comment2.params=studieRichting
+comment2.target=void\ setStudieRichting(java.lang.String)
+comment2.text=\r\n\ Set\ de\ ingevoerde\ studierichting\r\n\ @param\ studierichting\r\n
+comment3.params=
+comment3.target=java.lang.String\ getStudentNummer()
+comment3.text=\r\n\ Return\ de\ eventueel\ ingevoerde\ studentnummer\r\n\ @return\ studentnummer\r\n
+comment4.params=
+comment4.target=java.lang.String\ getStudieRichting()
+comment4.text=\r\n\ Return\ de\ eventueel\ ingevoerde\ studierichting\r\n\ @return\ studierichting\r\n
+comment5.params=
+comment5.target=void\ drukAf()
+comment5.text=\r\n\ Print\ de\ overige\ instantievariabelen\ van\ de\ klasse\ 'Kantine'\r\n
+numComments=6
