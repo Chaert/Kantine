@@ -4,10 +4,6 @@ public class Kantine {
     private Kassa kassa;
     private KassaRij kassarij;
     private KantineAanbod kantineaanbod;
-    public Persoon persoon;
-    public Dienblad dienblad;
-    public Artikel artikel1;
-    public Artikel artikel2;
 
     /**
      * Constructor
@@ -26,9 +22,9 @@ public class Kantine {
      * voor de kassa.
      */
     public void loopPakSluitAan(Persoon persoon, String[] artikelnamen) {
-        dienblad = new Dienblad();
+        Dienblad dienblad = new Dienblad();
         persoon.pakDienblad(dienblad);
-        for( int i = 0; i<artikelnamen.length; i++ ){
+        for(int i = 0; i<artikelnamen.length; i++){
             Artikel artikel = kantineaanbod.getArtikel(artikelnamen[i]);
             dienblad.voegToe(artikel);
         }
@@ -56,7 +52,7 @@ public class Kantine {
     
     /**
      * Deze methode 'set' het kantineaanbod
-     * @return kantineaanbod;
+     * @param kantineaanbod;
      */
     public void setKantineAanbod(KantineAanbod kantineaanbod){
         this.kantineaanbod = kantineaanbod;

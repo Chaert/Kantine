@@ -63,7 +63,9 @@ public class Student extends Persoon
      */
     public void drukAf()
     {
+        System.out.println ("----|Student|----");
         System.out.println ("Afkorting: " + getStudentNummer());
         System.out.println ("Afdeling: " + getStudieRichting());
+        System.out.print(super.toString());
     }    
 }

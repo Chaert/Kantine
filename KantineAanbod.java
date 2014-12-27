@@ -41,7 +41,11 @@ public class KantineAanbod {
          return aanbod.get(productnaam); 
     }
 
-    private void checkVoorraad(){
+    /**
+     * Controleer of de hoeveelheid op voorraad nog boven het MINIMUM_VOORRAAD ligt.
+     * Zo nee, voer dan de methode vulVoorraadAan uit
+     */
+    public void checkVoorraad(){
         for (int index = 0; index < artikelnaam.length; index++){
             ArrayList<Artikel> artikelen = aanbod.get(artikelnaam[index]);
             if(artikelen.size() < MINIMUM_VOORRAAD){
@@ -66,12 +70,15 @@ public class KantineAanbod {
         else 
         {
             Artikel a=stapel.get(0);
-            checkVoorraad();
             stapel.remove(0);
             return a;
         }
     }
     
+    /**
+     * Vul de voorraad aan van het desbetreffende artikel
+     * @param index van het artikel
+     */
     private void vulVoorraadAan(int index){
         ArrayList<Artikel> artikelen = aanbod.get(artikelnaam[index]);
         while(artikelen.size() < hoeveelheid[index]){

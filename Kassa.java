@@ -1,9 +1,9 @@
-import java.util.ArrayList;
+import java.util.*;
 
 public class Kassa {
-    public KassaRij kassarij;
-    public int aantalGepasseerdeArtikelen;
-    public double hoeveelheidGeld;
+    private KassaRij kassarij;
+    private int aantalGepasseerdeArtikelen;
+    private double hoeveelheidGeld;
     
     /**
      * Constructor
@@ -31,10 +31,11 @@ public class Kassa {
      */
     public double getDienbladTotaalPrijs(Dienblad dienblad) {
         if(dienblad != null){
+            Iterator<Artikel> iterator = dienblad.geefIterator();
             
             double totaalPrijs = 0.0;
-            for(int i = 0; i < dienblad.artikelen.size(); i++){
-                Artikel product = dienblad.artikelen.get(i);
+            while(iterator.hasNext()){
+                Artikel product = iterator.next();
                 totaalPrijs += product.getPlainPrijs();
             }
         
@@ -52,8 +53,16 @@ public class Kassa {
      * persoon hoort te tellen
      * @return Het aantal artikelen
      */
-    public int getAantalDienbladArtikelen(Dienblad dienblad) {
-        return dienblad.artikelen.size();
+    public int getAantalDienbladArtikelen(Dienblad dienblad) {      
+        Iterator<Artikel> iterator = dienblad.geefIterator();
+        
+        int aantal = 0;
+        
+        while(iterator.hasNext()){
+            Artikel product = iterator.next();
+            aantal ++;
+        }
+        return aantal;
     }
 
     /**

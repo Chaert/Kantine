@@ -1,7 +1,7 @@
-import java.util.Stack;
+import java.util.*;
 
 public class Dienblad {
-    public Stack<Artikel> artikelen;
+    private Stack<Artikel> artikelen;
 
     /**
      * Constructor
@@ -16,6 +16,15 @@ public class Dienblad {
      */
     public void voegToe(Artikel artikel) {
         artikelen.add(artikel);
+    }
+    
+    /**
+     * Iterate alle artikelen op het dienblad
+     * @return Iterator van artikelen
+     */
+    public Iterator<Artikel> geefIterator() {
+        Iterator<Artikel> iterator = artikelen.iterator();
+        return iterator;
     }
 
 }

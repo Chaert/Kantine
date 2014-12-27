@@ -66,8 +66,9 @@ public class KantineMedewerker extends Persoon
      */
     public void drukAf()
     {
+        System.out.println ("----|Katine Medewerker|----");
         System.out.println ("Medewerkersnummer: " + getMedewerkersNummer());
         System.out.println ("Mag deze persoon achter de kassa: " + getMagAchterKassa());
-
+        System.out.print(super.toString());
     }    
 }

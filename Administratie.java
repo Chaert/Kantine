@@ -2,7 +2,7 @@ import java.util.*;
 
 public class Administratie {
     
-    public static final int DAYS_IN_WEEK = 6;
+    private static final int DAYS_IN_WEEK = 5;
     
     /**
      * Private constructor die verder niks doet

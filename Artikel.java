@@ -3,8 +3,8 @@
  */
 public class Artikel
 {
-    public String naam;
-    public double prijs;
+    private String naam;
+    private double prijs;
 
     /**
      * Lege constructor

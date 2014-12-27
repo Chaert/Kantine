@@ -1,7 +1,7 @@
 import java.util.LinkedList;
 
 public class KassaRij {
-    public LinkedList<Persoon> rij;
+    private LinkedList<Persoon> rij;
     
     /**
      * Constructor

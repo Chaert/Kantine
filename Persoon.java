@@ -3,14 +3,14 @@
  */
 public class Persoon
 {
-    public int bsn;
-    public String voornaam;
-    public String achternaam;
-    public int geboortedatumDag;
-    public int geboortedatumMaand;
-    public int geboortedatumJaar;
-    public char geslacht;
-    public Dienblad dienblad;
+    private int bsn;
+    private String voornaam;
+    private String achternaam;
+    private int geboortedatumDag;
+    private int geboortedatumMaand;
+    private int geboortedatumJaar;
+    private char geslacht;
+    private Dienblad dienblad;
 
     /**
      * Lege constructor
@@ -174,7 +174,6 @@ public class Persoon
         } else {
             temp = geboortedatumDag+"/"+geboortedatumMaand+"/"+geboortedatumJaar;
         }
-
         return temp;
     }
 
@@ -211,17 +210,22 @@ public class Persoon
     }
 
     /**
-     * Print alle instantievariabelen van de klasse 'Persoon'
+     * Returnt alle instantievariabelen van de klasse 'Persoon' als string
      */
+    public String toString()
+    {
+        return "Burgerservicenummer: " + getBsn() + "\n" +
+               "Voornaam: " + getVoornaam() + "\n" +
+               "Achternaam: " + getAchternaam() + "\n" +
+               "Geboortedatum: "  + getGeboortedatum() + "\n" +
+               "Geslacht: " + getGeslacht() + "\n\n";
+
+    }   
+    
     public void drukAf()
     {
-        System.out.println ("Burgerservicenummer: " + getBsn());
-        System.out.println ("Voornaam: " + getVoornaam());
-        System.out.println ("Achternaam: " + getAchternaam());
-        System.out.println ("Geboortedatum: "  + getGeboortedatum());
-        System.out.println ("Geslacht: " + getGeslacht()); 
-
-    }    
+        
+    }
 
     /**
      * Methode om dienblad te koppelen aan een persoon
@@ -231,6 +235,10 @@ public class Persoon
         this.dienblad = dienblad;
     }
     
+    /**
+     * Methode om het gekoppelde dienblad te retourneren
+     * @return dienblad
+     */
     public Dienblad getDienblad(){
         return dienblad;
     }
