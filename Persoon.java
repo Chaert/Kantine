@@ -11,6 +11,7 @@ public class Persoon
     private int geboortedatumJaar;
     private char geslacht;
     private Dienblad dienblad;
+    private Betaalwijze betaalwijze;
 
     /**
      * Lege constructor
@@ -218,15 +219,14 @@ public class Persoon
                "Voornaam: " + getVoornaam() + "\n" +
                "Achternaam: " + getAchternaam() + "\n" +
                "Geboortedatum: "  + getGeboortedatum() + "\n" +
-               "Geslacht: " + getGeslacht() + "\n\n";
-
+               "Geslacht: " + getGeslacht() + "\n" +
+               "Betaalwijze: " + getBetaalwijze() + "\n\n";
     }   
-    
-    public void drukAf()
-    {
+
+    public void drukAf(){
         
     }
-
+    
     /**
      * Methode om dienblad te koppelen aan een persoon
      * @param dienblad
@@ -242,5 +242,33 @@ public class Persoon
     public Dienblad getDienblad(){
         return dienblad;
     }
-
+    
+    /**
+     * Kijk of een bepaald Object gelijk is aan een persoon
+     * @param Object
+     * @return boolean
+     */
+    public boolean equals(Object object){
+         if(this == object){
+             return true;
+         } else {
+             return false;
+         }
+    }   
+    
+    /**
+     * Set de betaalwijze
+     * @param betaalwijze
+     */
+    public void setBetaalwijze(Betaalwijze betaalwijze){
+        this.betaalwijze = betaalwijze;
+    }
+    
+    /**
+     * Get de betaalwijze
+     * @return betaalwijze
+     */
+    public Betaalwijze getBetaalwijze(){
+        return betaalwijze;
+    }
 }

@@ -104,8 +104,26 @@ public class KantineSimulatie {
         // vind de artikelnamen op basis van 
         // de indexen hierboven
         String[] artikelen=geefArtikelNamen(tepakken);
-        
+
         return artikelen;
+    }
+
+    /**
+     * Kies een van de 2 betaal methodes
+     * @return Betaalmethode
+     */
+    private Betaalwijze maakBetaalwijze(){
+        Betaalwijze betaalwijze;
+        if(getRandomValue(0,1) == 1){
+            betaalwijze = new Contant();
+        } else {
+            Pinpas pinpas = new Pinpas();
+            pinpas.setKredietLimiet(50.00);
+            betaalwijze = pinpas;
+        }
+
+        betaalwijze.setSaldo(getRandomValue(0, 30));
+        return betaalwijze;
     }
 
     /**
@@ -132,16 +150,18 @@ public class KantineSimulatie {
                 // artikelen, sluit aan
                 Persoon student = new Student(l, "Informatica", 328109, "Daniel", "Boonstra", 25, 9, 1997, 'm');
                 kantine.loopPakSluitAan(student, maakArtikelArray());
-                //student.drukAf();
+                student.setBetaalwijze(maakBetaalwijze());
+                student.drukAf();
             }
-            
+
             // Dan de kantine medewerkers
             for(int l=1; l<=aantalKantineMedewerkers; l++){
                 // loop de kantine binnen, pak de gewenste 
                 // artikelen, sluit aan
                 Persoon kantineMedewerker = new KantineMedewerker(l, true, 328109, "Daniel", "Boonstra", 25, 9, 1997, 'm');
                 kantine.loopPakSluitAan(kantineMedewerker, maakArtikelArray());
-                //kantineMedewerker.drukAf();
+                kantineMedewerker.setBetaalwijze(maakBetaalwijze());
+                kantineMedewerker.drukAf();
             }
 
             // En tot slot de docenten
@@ -150,7 +170,8 @@ public class KantineSimulatie {
                 // artikelen, sluit aan
                 Persoon docent = new Docent("TEST", "Instituut voor ICT", 328109, "Daniel", "Boonstra", 25, 9, 1997, 'm');
                 kantine.loopPakSluitAan(docent, maakArtikelArray());
-                //docent.drukAf();
+                docent.setBetaalwijze(maakBetaalwijze());
+                docent.drukAf();
             }
 
             // verwerk rij voor de kassa
@@ -170,10 +191,10 @@ public class KantineSimulatie {
             aantalArray[i] = aantalArtikelen;
             kantine.getKassa().resetKassa();
         }
-        
+
         // Laat de administratie relevante berekeningen uitvoeren
         double[] dagOmzet = Administratie.berekenDagOmzet(omzetArray);
-        
+
         System.out.println("----------| Administratie |----------");
         for(int i = 0; i < dagOmzet.length; i++){
             String bedrag;
@@ -182,10 +203,10 @@ public class KantineSimulatie {
             } else {
                 bedrag = "€" + round.format(dagOmzet[i]);
             }
-            
+
             System.out.println("- Dag " + (i+1) + " van de week: " + bedrag);
         }
-        
+
         System.out.println("-");
         System.out.println("- Gemiddelde omzet: " + round.format(Administratie.berekenGemiddeldeOmzet(omzetArray)));
         System.out.println("- Gemiddeld aantal artikelen: " + round.format(Administratie.berekenGemiddeldAantal(aantalArray)));

@@ -1,4 +1,4 @@
-public class KantineMedewerker extends Persoon
+public class KantineMedewerker extends Persoon implements KortingskaartHouder
 {
     private int medewerkersNummer;
     private boolean magAchterKassa;
@@ -70,5 +70,20 @@ public class KantineMedewerker extends Persoon
         System.out.println ("Medewerkersnummer: " + getMedewerkersNummer());
         System.out.println ("Mag deze persoon achter de kassa: " + getMagAchterKassa());
         System.out.print(super.toString());
-    }    
+    }  
+    
+    // methode om kortingspercentage op te vragen    
+    public double geefKortingsPercentage(){
+        return 0.35;
+    }
+    
+    // methode om op te vragen of er maximum per keer aan de korting zit    
+    public boolean heeftMaximum(){
+        return false;
+    }
+    
+    // methode om het maximum kortingsbedrag op te vragen   
+    public double geefMaximum(){
+        return 0.00;
+    }
 }

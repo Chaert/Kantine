@@ -4,7 +4,7 @@ public class Kassa {
     private KassaRij kassarij;
     private int aantalGepasseerdeArtikelen;
     private double hoeveelheidGeld;
-    
+
     /**
      * Constructor
      */
@@ -20,10 +20,33 @@ public class Kassa {
         Dienblad dienblad = persoon.getDienblad();
         int aantal = getAantalDienbladArtikelen(dienblad);
         double bedrag = getDienbladTotaalPrijs(dienblad);
-        aantalGepasseerdeArtikelen += aantal;
-        hoeveelheidGeld += bedrag;
+        Betaalwijze betaalwijze = persoon.getBetaalwijze();
+        
+        double korting;
+        if(persoon instanceof KortingskaartHouder){
+            KortingskaartHouder kortingskaart = (KortingskaartHouder) persoon;
+            
+            if(kortingskaart.heeftMaximum()){
+                if((bedrag * kortingskaart.geefKortingsPercentage()) <= kortingskaart.geefMaximum()){
+                    korting = bedrag * kortingskaart.geefKortingsPercentage();
+                } else {
+                    korting = kortingskaart.geefMaximum();
+                }
+            } else {
+                korting = bedrag * kortingskaart.geefKortingsPercentage();
+            }
+            
+            bedrag = bedrag - korting;
+        }
+        
+        if(betaalwijze.betaal(bedrag)){
+            aantalGepasseerdeArtikelen += aantal;
+            hoeveelheidGeld += bedrag;
+        } else {
+            System.out.println(persoon.getVoornaam() + " heeft te weinig geld om te betalen!");
+        }
     }
-    
+
     /**
      * Methode om de totaalprijs van de artikelen
      * op dienblad dat bij de persoon hoort uit te rekenen
@@ -32,22 +55,22 @@ public class Kassa {
     public double getDienbladTotaalPrijs(Dienblad dienblad) {
         if(dienblad != null){
             Iterator<Artikel> iterator = dienblad.geefIterator();
-            
+
             double totaalPrijs = 0.0;
             while(iterator.hasNext()){
                 Artikel product = iterator.next();
                 totaalPrijs += product.getPlainPrijs();
             }
-        
+
             return totaalPrijs;
-            
+
         } else {
             System.out.println("U heeft nog geen dienblad.");
             double totaalPrijs = 0.0;
             return totaalPrijs;
         }
     }
-    
+
     /**
      * Methode om het aantal artikelen op dienblad dat bij de
      * persoon hoort te tellen
@@ -55,9 +78,9 @@ public class Kassa {
      */
     public int getAantalDienbladArtikelen(Dienblad dienblad) {      
         Iterator<Artikel> iterator = dienblad.geefIterator();
-        
+
         int aantal = 0;
-        
+
         while(iterator.hasNext()){
             Artikel product = iterator.next();
             aantal ++;
