@@ -20,12 +20,11 @@ public class Kassa {
         Dienblad dienblad = persoon.getDienblad();
         int aantal = getAantalDienbladArtikelen(dienblad);
         double bedrag = getDienbladTotaalPrijs(dienblad);
-        Betaalwijze betaalwijze = persoon.getBetaalwijze();
-        
+
         double korting;
         if(persoon instanceof KortingskaartHouder){
             KortingskaartHouder kortingskaart = (KortingskaartHouder) persoon;
-            
+
             if(kortingskaart.heeftMaximum()){
                 if((bedrag * kortingskaart.geefKortingsPercentage()) <= kortingskaart.geefMaximum()){
                     korting = bedrag * kortingskaart.geefKortingsPercentage();
@@ -35,15 +34,21 @@ public class Kassa {
             } else {
                 korting = bedrag * kortingskaart.geefKortingsPercentage();
             }
-            
+
             bedrag = bedrag - korting;
         }
-        
-        if(betaalwijze.betaal(bedrag)){
-            aantalGepasseerdeArtikelen += aantal;
-            hoeveelheidGeld += bedrag;
+
+        if(persoon.getBetaalwijze() != null){
+            Betaalwijze betaalwijze = persoon.getBetaalwijze();
+            
+            if(betaalwijze.betaal(bedrag)){
+                aantalGepasseerdeArtikelen += aantal;
+                hoeveelheidGeld += bedrag;
+            } else {
+                System.out.println(persoon.getVoornaam() + " heeft te weinig geld om te betalen of geen betaal methode!");
+            }
         } else {
-            System.out.println(persoon.getVoornaam() + " heeft te weinig geld om te betalen!");
+            System.out.println("Deze persoon heeft geen betaalwijze!");
         }
     }
 
