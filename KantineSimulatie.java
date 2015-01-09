@@ -54,6 +54,7 @@ public class KantineSimulatie {
     private void makeRandomPerson(){
         int kans = getRandomValue(1, 100);
         Persoon persoon;
+        Betaalwijze betaalwijze;
         
         if(kans == 1){
             persoon = new KantineMedewerker(1, true, 328109, "Tjeerd", "Feddema", 25, 9, 1997, 'm');
@@ -62,9 +63,19 @@ public class KantineSimulatie {
         } else {
             persoon = new Student(1, "Informatica", 328109, "Daniel", "Boonstra", 25, 9, 1997, 'm');
         }
-
+        if (getRandomValue(0,1) == 0) {
+            betaalwijze = new Pinpas();
+            betaalwijze.setSaldo(getRandomValue(0,1));
+            Pinpas pinpas = (Pinpas) betaalwijze;
+            pinpas.setKredietLimiet(getRandomValue(0,200));
+        } else {
+            betaalwijze = new Contant();
+            betaalwijze.setSaldo(getRandomValue(0,1));
+        }
+        persoon.setBetaalwijze(betaalwijze);
         kantine.loopPakSluitAan(persoon, maakArtikelArray());
         persoon.drukAf();
+        
     }
 
     /**
@@ -132,7 +143,7 @@ public class KantineSimulatie {
      * verloop van de kantine
      * @param dagen
      */
-    public void simuleer(int dagen) {
+    public void simuleer(int dagen)throws TeWeinigGeldException {
         int[] aantalArray = new int[dagen];
         double[] omzetArray = new double[dagen];
         // for lus voor dagen
@@ -154,6 +165,13 @@ public class KantineSimulatie {
             // zijn gekomen
             // reset de kassa voor de volgende dag
             // en check de voorraad
+            try {
+                kantine.verwerkRijVoorKassa();
+                
+            }
+            catch(TeWeinigGeldException teweiniggeld) {
+               
+        }
             kantine.verwerkRijVoorKassa();
             double dagTotaal = kantine.getKassa().hoeveelheidGeldInKassa();
             int aantalArtikelen = kantine.getKassa().aantalArtikelen();
