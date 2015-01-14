@@ -16,7 +16,7 @@ public class Kassa {
      * Vraag het aantal artikelen en de totaalprijs op.
      * @param persoon die moet afrekenen
      */
-    public void rekenAf(Persoon persoon)throws TeWeinigGeldException {
+    public void rekenAf(Persoon persoon) throws TeWeinigGeldException {
         Dienblad dienblad = persoon.getDienblad();
         int aantal = getAantalDienbladArtikelen(dienblad);
         double bedrag = getDienbladTotaalPrijs(dienblad);
@@ -41,9 +41,18 @@ public class Kassa {
         if(persoon.getBetaalwijze() != null){
             Betaalwijze betaalwijze = persoon.getBetaalwijze();
             
-            betaalwijze.betaal(bedrag);
-            aantalGepasseerdeArtikelen += aantal;
-            hoeveelheidGeld += bedrag;
+            try{
+                betaalwijze.betaal(bedrag);
+                aantalGepasseerdeArtikelen += aantal;
+                hoeveelheidGeld += bedrag;
+            } 
+            catch(TeWeinigGeldException teweiniggeld){
+                System.out.println("---------|Te weinig geld|---------");
+                System.out.println(persoon.getVoornaam() + " " + persoon.getAchternaam() + " kon niet afrekenen:");
+                teweiniggeld.printFoutmelding();
+                System.out.println("----------------------------------");
+                System.out.println();
+            }
             
         } else {
             System.out.println("Deze persoon heeft geen betaalwijze!");

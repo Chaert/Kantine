@@ -6,7 +6,7 @@
  */
 public class TeWeinigGeldException extends Exception
 {
-  
+   String message;
    /**
      * Constructor for objects of class TeWeinigGeldException
      */
@@ -23,6 +23,13 @@ public class TeWeinigGeldException extends Exception
      */
     public TeWeinigGeldException(String message)
    {
-       
+       this.message = message;
+    }
+    
+    /**
+     * Methode om de foutmelding te printen
+     */
+    public void printFoutmelding(){
+        System.out.println(message);
     }
 }
